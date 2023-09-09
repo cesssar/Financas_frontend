@@ -36,7 +36,8 @@ export default function Login() {
             navigate('/', { replace: true });
         }
         catch(error){
-            console.log(error);
+            localStorage.setItem('messageLogin', 'Credenciais inválidas');
+            navigate('/login', { replace: true });
         }
     };
 
@@ -57,7 +58,7 @@ export default function Login() {
                 <div className="col-lg-4 mx-auto">
                 <div className="auth-form-light text-left py-5 px-4 px-sm-5">
                     <div className="brand-logo">
-                    <img src="../../images/logo.svg" alt="logo" />
+                    <img src="images/porquinho.png" alt="logo" className="align-center"/>
                     </div>
                     <div className="mt-3">
                         <p className="text-danger">{message}</p>

@@ -3,13 +3,11 @@ import React, { useEffect } from "react";
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
-import Row from "../components/row";
 import Card from "../components/card";
+import CardLancamento from "../components/cardlancamento";
 
 // services
-import SaldoContas from "../services/saldocontas";
-import FaturaCartao from "../services/faturacartao";
-import LimiteCredito from "../services/limitecredito";
+import RequestGet from "../services/requestget";
 
 export default function Home(){
 
@@ -27,10 +25,13 @@ export default function Home(){
         } 
     },[]);
 
-    const saldo = SaldoContas();
-    const fatura = FaturaCartao();
-    const limitecredito = <LimiteCredito tipo = 'c' />;
-    const limitealimentacao = <LimiteCredito tipo = 'a' />;
+    const saldo = <RequestGet endpoint='/saldo/contas' />;
+    const fatura = <RequestGet endpoint='/fatura/cartaocredito' />;
+    const limitecredito = <RequestGet endpoint = '/limite/cartaocredito?tipo=c' />;
+    const limitealimentacao = <RequestGet endpoint = '/limite/cartaocredito?tipo=a' />;
+
+    const teste = <RequestGet endpoint = '/cadastros/cartaocredito' />;
+    console.log(teste);
 
     return(
         <div className="container-scroller">
@@ -39,7 +40,7 @@ export default function Home(){
                 <Sidebar />
                 <div className="main-panel">
                     <div className="content-wrapper">
-                        <Row title="Resumo" />
+
                         <div className="row">
                             <Card 
                                 title="Contas"
@@ -62,6 +63,8 @@ export default function Home(){
                                 icon="ti-id-badge icon-md text-muted mb-0 mb-md-3 mb-xl-0"
                             />
                         </div>
+                        
+                        <CardLancamento />
                         <Footer />
                     </div>
                 </div>
