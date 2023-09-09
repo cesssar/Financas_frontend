@@ -1,0 +1,1 @@
+docker run --rm --volume "./app:/app" --workdir "/app" --env REACT_APP_URL_API=https://10.0.0.113:5000 --publish 666:3000 -it node:alpine sh
