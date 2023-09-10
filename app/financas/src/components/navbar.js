@@ -17,12 +17,20 @@ export default function Navbar() {
                 </a>
                 <div className="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a className="dropdown-item" href="/">
-                    <i className="ti-settings text-primary" />
+                    <i className="ti-home text-primary" />
                     Home
+                </a>
+                <a className="dropdown-item" href="/lancamentos">
+                    <i className="ti-pencil-alt text-primary" />
+                    Lançamento
+                </a>
+                <a className="dropdown-item" href="/extrato">
+                    <i className="ti-ticket text-primary" />
+                    Extrato
                 </a>
                 <a className="dropdown-item" href="/login">
                     <i className="ti-power-off text-primary" />
-                    Logout
+                    Sair
                 </a>
                 </div>
             </li>

@@ -6,14 +6,24 @@ export default function Sidebar() {
         <nav className="sidebar sidebar-offcanvas" id="sidebar">
         <ul className="nav">
             <MenuSidebar 
-                title="Resumo"
+                title="Home"
                 link="/"
-                icon="ti-notepad menu-icon"
+                icon="ti-home menu-icon"
             />
             <MenuSidebar 
                 title="Lançamento"
-                link="/login"
+                link="/lancamentos"
                 icon="ti-pencil-alt menu-icon"
+            />
+            <MenuSidebar 
+                title="Extrato"
+                link="/extrato"
+                icon="ti-ticket menu-icon"
+            />
+            <MenuSidebar 
+                title="Sair"
+                link="/login"
+                icon="ti-power-off menu-icon"
             />
         </ul>
         </nav>

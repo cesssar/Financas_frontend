@@ -4,7 +4,6 @@ import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import Card from "../components/card";
-import CardLancamento from "../components/cardlancamento";
 
 // services
 import RequestGet from "../services/requestget";
@@ -29,10 +28,7 @@ export default function Home(){
     const fatura = <RequestGet endpoint='/fatura/cartaocredito' />;
     const limitecredito = <RequestGet endpoint = '/limite/cartaocredito?tipo=c' />;
     const limitealimentacao = <RequestGet endpoint = '/limite/cartaocredito?tipo=a' />;
-
-    const teste = <RequestGet endpoint = '/cadastros/cartaocredito' />;
-    console.log(teste);
-
+    
     return(
         <div className="container-scroller">
             <Navbar />
@@ -64,7 +60,6 @@ export default function Home(){
                             />
                         </div>
                         
-                        <CardLancamento />
                         <Footer />
                     </div>
                 </div>

@@ -11,10 +11,8 @@ export default function SelectConta({onChange}) {
     };
 
   useEffect(() => {
-    // Make a GET request using Axios
     axios.get(baseUrl + endpoint, config)
       .then(response => {
-        // Handle the JSON response data (assuming it's an array)
         setData(response.data);
         setIsLoading(false);
       })

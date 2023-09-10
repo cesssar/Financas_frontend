@@ -48,7 +48,7 @@ export default function CardLancamento(){
             localStorage.setItem('mensagemLancamento','Verifique os dados e saldo/limites.');
             localStorage.setItem('classmensagem','text-danger');
         };
-        window.location.href = '/';
+        window.location.href = '/lancamentos';
     };
 
     useEffect(() => {
