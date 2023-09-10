@@ -25,7 +25,7 @@ export default function SelectCategoria({onChange}) {
   return (
     <div>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>Carregando...</p>
       ) : (
         <select className="form-control form-control-sm" id="categoria" name='categoria' onChange={onChange} required>
           <option value="">Selecione uma categoria...</option>  

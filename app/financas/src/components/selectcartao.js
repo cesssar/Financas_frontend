@@ -25,7 +25,7 @@ export default function SelectCartao({onChange}) {
   return (
     <div>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>Carregando...</p>
       ) : (
         <select className="form-control form-control-sm" id="cartaocredito" name='cartaocredito' onChange={onChange}>     
           <option value="">Ou selecione um cartão...</option>  

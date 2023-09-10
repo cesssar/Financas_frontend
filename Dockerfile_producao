@@ -1,17 +1,19 @@
 FROM node:alpine AS builder
 ENV NODE_ENV production
-ENV REACT_APP_URL_API http://44.195.129.139:5000
+ENV REACT_APP_URL_API https://44.195.129.139:5000
 WORKDIR /app
 COPY /app/financas/package.json .
-COPY /app/financas/yarn.lock .
 RUN npm install --production --omit=dev
 COPY /app/financas .
 RUN npm run build
 
 FROM nginx:stable-alpine3.17 as producao
 ENV NODE_ENV production
-ENV REACT_APP_URL_API http://44.195.129.139:5000
+ENV REACT_APP_URL_API https://44.195.129.139:5000
 COPY --from=builder /app/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
+COPY ./cert/localhost.crt /etc/nginx/cert/localhost.crt
+COPY ./cert/localhost.key /etc/nginx/cert/localhost.key
+RUN chmod -R 777 /etc/nginx/cert
+EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]

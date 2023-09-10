@@ -9,8 +9,6 @@ export default function CardExtrato() {
     const ano = localStorage.getItem('ano') ? localStorage.getItem('ano') : hoje.getFullYear();
     const mesano = localStorage.getItem('mesano') ? localStorage.getItem('mesano') : hoje.getMonth() + 1 + '/' + hoje.getFullYear();
 
-    console.log(mesano);
-
     const meses = ['1/2023', '2/2023', '3/2023', '4/2023', '5/2023', '6/2023', '7/2023', '8/2023', '9/2023', '10/2023', '11/2023', '12/2023', '1/2024', '2/2024', '3/2024', '4/2024', '5/2024', '6/2024', '7/2024', '8/2024', '9/2024', '10/2024', '11/2024', '12/2024'];
     
     const baseUrl = process.env.REACT_APP_URL_API;
@@ -72,7 +70,7 @@ export default function CardExtrato() {
                         <tbody>
                             
                             {isLoading ? (
-                                <p>Loading...</p>
+                                <p>Carregando...</p>
                             ) : (
                                 <>
                                 {data.map(item => (

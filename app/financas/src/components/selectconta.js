@@ -25,7 +25,7 @@ export default function SelectConta({onChange}) {
   return (
     <div>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>Carregando...</p>
       ) : (
         <select className="form-control form-control-sm" id="conta" name='conta' onChange={onChange}>     
             <option value="">Selecione uma conta...</option>  
