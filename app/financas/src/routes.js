@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Lancamentos from "./pages/lancamentos";
 import Extrato from "./pages/extrato";
+import Detalhes from "./pages/detalhes";
 
 export default function Router(){
 
@@ -33,6 +34,13 @@ export default function Router(){
             element: <Extrato />,
             children: [
                 { element: <Navigate to="/extrato" />, index: true},
+            ]
+        },
+        {
+            path: '/detalhes',
+            element: <Detalhes />,
+            children: [
+                { element: <Navigate to="/detalhes" />, index: true},
             ]
         },
     ]);

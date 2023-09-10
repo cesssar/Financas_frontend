@@ -5,6 +5,7 @@ import Home from './pages/home';
 import Login from './pages/login';
 import Lancamentos from './pages/lancamentos';
 import Extrato from './pages/extrato';
+import Detalhes from './pages/detalhes';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/lancamentos" element={<Lancamentos />} />
         <Route path="/extrato" element={<Extrato />} />
+        <Route path="/detalhes" element={<Detalhes />} />
         <Route path="*" element={<Login />} />
       </Routes>
       </BrowserRouter>
