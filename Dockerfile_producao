@@ -3,7 +3,7 @@ ENV NODE_ENV production
 ENV REACT_APP_URL_API https://44.195.129.139:5000
 WORKDIR /app
 COPY /app/financas/package.json .
-RUN npm install --production --omit=dev
+RUN npm install --production --omit=dev --force
 COPY /app/financas .
 RUN npm run build
 
