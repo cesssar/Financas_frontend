@@ -4,6 +4,8 @@ import Login from "./pages/Login";
 import Lancamentos from "./pages/lancamentos";
 import Extrato from "./pages/extrato";
 import Detalhes from "./pages/detalhes";
+import Categorias from "./pages/categorias";
+import QRCode from "./pages/qrcode";
 
 export default function Router(){
 
@@ -41,6 +43,20 @@ export default function Router(){
             element: <Detalhes />,
             children: [
                 { element: <Navigate to="/detalhes" />, index: true},
+            ]
+        },
+        {
+            path: '/categorias',
+            element: <Categorias />,
+            children: [
+                { element: <Navigate to="/categorias" />, index: true},
+            ]
+        },
+        {
+            path: '/qrcode',
+            element: <QRCode />,
+            children: [
+                { element: <Navigate to="/qrcode" />, index: true},
             ]
         },
     ]);

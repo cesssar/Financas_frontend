@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CurrencyInput from 'react-currency-masked-input'
 import axios from 'axios';
-
+import dayjs from 'dayjs';
 
 import SelectCategoria from "./selectcategoria";
 import SelectConta from "./selectconta";
 import SelectCartao from "./selectcartao";
+
+import { DatePicker } from 'rsuite';
+import './datepicker.css';
+const ranges = [
+    {
+      label: 'Now',
+      value: new Date()
+    }
+  ];
 
 export default function CardLancamento(){
     const [categoria, setCategoria] = useState(0);  
@@ -14,9 +23,7 @@ export default function CardLancamento(){
     const [valor, setValor] = useState(0);
     const [parcelas, setParcelas] = useState(1);
     const [obs, setObs] = useState('');
-
-    let mensagem = localStorage.getItem('mensagemLancamento');
-    const classmensagem = localStorage.getItem('classmensagem') ? localStorage.getItem('classmensagem') : 'text-success';
+    const [dataLancamento, setdataLancamento] = useState(new Date());
 
     const numeroparcelas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 ,24];
 
@@ -25,9 +32,9 @@ export default function CardLancamento(){
         const baseUrl = process.env.REACT_APP_URL_API;
         const endpoint = '/cadastros/lancamento';
         const data = JSON.stringify({
-            data: "2023-09-09",
-            id_conta: conta,
-            id_credito: cartao,
+            data: dayjs(dataLancamento).format('YYYY-MM-DD'),
+            id_conta: conta ? conta : 0,
+            id_credito: cartao ? cartao : 0,
             id_categoria: categoria,
             numero_parcelas: parcelas,
             valor: (valor*10),
@@ -35,29 +42,20 @@ export default function CardLancamento(){
             id_usuario: 1
         });
         try{
-            const response = await axios.post(baseUrl + endpoint, data,{
+            await axios.post(baseUrl + endpoint, data,{
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem("token")}`, 'accept': 'application/json'
                 }
             });
             
-            localStorage.setItem('mensagemLancamento','Lançamento realizado com sucesso!');
-            localStorage.setItem('classmensagem','text-success');
+            alert('Lançamento realizado com sucesso!');
+            window.location.href = '/lancamentos';
         }catch(error){
-            localStorage.setItem('mensagemLancamento','Verifique os dados e saldo/limites.');
-            localStorage.setItem('classmensagem','text-danger');
+            alert('Verifique os dados e saldo/limites.');
         };
-        window.location.href = '/lancamentos';
+        
     };
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            localStorage.removeItem('mensagemLancamento');
-            mensagem = '';
-        }, 3000);
-        return () => clearTimeout(timer);
-    },[]);
 
     return(
         
@@ -66,6 +64,15 @@ export default function CardLancamento(){
             <div className="card-body">
             <p className="card-title">Lançamento manual</p>
             <form className="forms-sample" onSubmit={handleSubmit}>
+            <div className="form-group">
+                <DatePicker
+                    format="dd/MM/yyyy"
+                    showMeridian
+                    ranges={ranges}
+                    style={{ width: 260 }}
+                    onChange={(e) => setdataLancamento(e)}
+                />
+            </div>
             <div className="form-group">
                 <SelectCategoria onChange={(e) => setCategoria(e.target.value)} required />
             </div>
@@ -89,9 +96,6 @@ export default function CardLancamento(){
             </div>
             <div className="form-group">
                 <input type="text" className="form-control form-control-sm" placeholder="Observação" aria-label="Observação" id="obs" name="obs" onChange={(e) => setObs(e.target.value)}/>
-            </div>
-            <div className="form-group">
-                <p class={classmensagem}>{mensagem}</p>
             </div>
             <button type="submit" className="btn btn-primary me-2">Salvar</button>
             

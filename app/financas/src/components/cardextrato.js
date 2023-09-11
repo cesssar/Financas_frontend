@@ -31,7 +31,6 @@ export default function CardExtrato() {
 
 
     const handleChange = (e) => {
-        e.preventDefault();
         const data = e.target.value;
         const mesano = data.split('/');
         const mes = mesano[0];
@@ -62,7 +61,6 @@ export default function CardExtrato() {
                         <table className="table table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Data</th>
                                 <th>Conta</th>
                                 <th>Valor</th>
@@ -76,10 +74,9 @@ export default function CardExtrato() {
                                 <>
                                 {data.map(item => (
                                     <tr>
-                                    <td><p className="text-small"><a href={`/detalhes?id=${item.id}`}>{item.id}</a></p></td>
                                     <td><p className="text-small">{item.data}</p></td>
                                     <td><p className="text-small">{item.banco}{item.cartao_credito}</p></td>
-                                    <td><p className="text-small">R$ {item.valor}</p></td>
+                                    <td><p className="text-small"><a href={`/detalhes?id=${item.id}`}>R$ {item.valor}</a></p></td>
                                     </tr>
                                 ))}
                                 </>

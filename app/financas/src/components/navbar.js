@@ -1,8 +1,6 @@
 import React from "react";
 
 export default function Navbar() {
-    const usuario = localStorage.getItem('username');
-
     return(
         <nav className="navbar col-lg-12 col-12 p-0 d-flex flex-row fixed-top">
         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -24,9 +22,17 @@ export default function Navbar() {
                     <i className="ti-pencil-alt text-primary" />
                     Lançamento
                 </a>
+                <a className="dropdown-item" href="/qrcode">
+                    <i className="ti-camera text-primary" />
+                    QRCode
+                </a>
                 <a className="dropdown-item" href="/extrato">
                     <i className="ti-ticket text-primary" />
                     Extrato
+                </a>
+                <a className="dropdown-item" href="/categorias">
+                    <i className="ti-shopping-cart text-primary" />
+                    Categorias
                 </a>
                 <a className="dropdown-item" href="/login">
                     <i className="ti-power-off text-primary" />

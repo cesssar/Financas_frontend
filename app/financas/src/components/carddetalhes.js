@@ -29,7 +29,7 @@ export default function CardDetalhes(){
         axios.delete(baseUrl + endpoint, config)
         .then(response => {
             alert('Deletado');
-            window.history.back();
+            window.location.href = '/extrato';
         })
         .catch(function (error) {
             alert('Erro ao deletar');
