@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { Component } from 'react';
 import QrReader from 'modern-react-qr-reader'
 import axios from 'axios';
 
@@ -16,14 +16,35 @@ export default class QrCode extends Component {
 
     handleScan = data => {
         if (data) {
-        this.state.result = data;
+            this.setState({result: ''});
             this.setState({result: data});
         }
     }
     
     handleError = err => {
-        this.state.result = err.message;
+        this.setState({result: err.message});
     }
+
+    handleEnviar = () => {
+        const baseUrl = process.env.REACT_APP_URL_API;
+        const endpoint = '/cadastros/qrcode/';
+        const data = JSON.stringify({
+            link: this.state.result
+        })
+        axios.post(baseUrl + endpoint, data,{
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem("token")}`, 'accept': 'application/json'
+            }
+        })
+        .then(response => {
+            alert(response.data);
+        })
+        .catch(function (error) {
+            alert(error.message);
+        });
+    }
+
     render() {
         return(
             <div className="col-12 grid-margin stretch-card">
@@ -43,7 +64,7 @@ export default class QrCode extends Component {
                     <blockquote className="blockquote">
                         <p className=".text-secondary">{this.state.result}</p>
                     </blockquote>
-                    <button type="button" className="btn btn-md btn-primary me-2">Enviar</button>
+                    <button type="button" className="btn btn-md btn-primary me-2" onClick={this.handleEnviar}>Enviar</button>
                 </form>
                 </div>
             </div>

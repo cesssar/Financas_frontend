@@ -85,9 +85,15 @@ export default function Login() {
                     <div className="mt-3">
                     <button type="button" className="btn btn-primary me-2" onClick={handleClick}>Entrar</button>
                     </div>
+                    
                     </form>
                 </div>
                 </div>
+                
+                <div className="mt-3">
+                    <p className="text-muted text-small" style={{"-webkit-text-align":"right","text-align":"center"}}>Servidor: {process.env.REACT_APP_URL_API}</p>
+                </div>
+
             </div>
             </div>
             {/* content-wrapper ends */}

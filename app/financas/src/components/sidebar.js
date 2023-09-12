@@ -16,9 +16,19 @@ export default function Sidebar() {
                 icon="ti-pencil-alt menu-icon"
             />
             <MenuSidebar 
+                title="QRcode"
+                link="/qrcode"
+                icon="ti-camera menu-icon"
+            />
+            <MenuSidebar 
                 title="Extrato"
                 link="/extrato"
                 icon="ti-ticket menu-icon"
+            />
+            <MenuSidebar 
+                title="Categorias"
+                link="/categorias"
+                icon="ti-shopping-cart menu-icon"
             />
             <MenuSidebar 
                 title="Sair"
