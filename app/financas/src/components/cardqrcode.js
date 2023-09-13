@@ -92,6 +92,9 @@ export default class QrCode extends Component {
         })
         .then(response => {
             alert(response.data);
+            if(response.data === 'Dados importados com sucesso'){
+                window.location.href = '/extrato';
+            }
         })
         .catch(function (error) {
             alert(error.message);
