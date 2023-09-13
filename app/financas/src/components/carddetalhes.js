@@ -65,7 +65,6 @@ export default function CardDetalhes(){
                             <tr><td>Data:</td><td>{item.data}</td></tr>
                             <tr><td>Conta/Cartão:</td><td>{item.banco}{item.cartao_credito}</td></tr>
                             <tr><td>Categoria:</td><td>{item.categoria}</td></tr>
-                            <tr><td>Parcelas:</td><td>{item.numero_parcelas}</td></tr>
                             <tr><td>Valor:</td><td>R$ {item.valor}</td></tr>
                             <tr><td>Observação:</td><td>{item.observacao}</td></tr>
                             </tbody>
