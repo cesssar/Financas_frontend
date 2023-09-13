@@ -1,18 +1,55 @@
 import React, { Component } from 'react';
 import QrReader from 'modern-react-qr-reader'
 import axios from 'axios';
+import dayjs from 'dayjs';
+
+import SelectCategoria from "./selectcategoria";
+import SelectConta from "./selectconta";
+import SelectCartao from "./selectcartao";
+import { DatePicker } from 'rsuite';
+import './datepicker.css';
+
+const ranges = [
+    {
+      label: 'Now',
+      value: new Date()
+    }
+  ];
 
 export default class QrCode extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            result: 'Aguardando leitura...'
+            result: '',
+            dataLancamento: new Date(),
+            categoria: 0,
+            conta: 0,
+            cartao: 0
         }
 
         this.handleError = this.handleError.bind(this);
         this.handleScan = this.handleScan.bind(this);
     }
+
+    handleCategoria = (e) => {
+        this.setState({categoria: e.target.value});
+    }
+
+    handleConta = (e) => {
+        this.setState({conta: e.target.value});
+        this.setState({cartao: 0});
+    }
+
+    handleCartao = (e) => {
+        this.setState({cartao: e.target.value});
+        this.setState({conta: 0});
+    }
+
+    handleData = (e) => {
+        this.setState({dataLancamento: e});
+    }
+    
 
     handleScan = data => {
         if (data) {
@@ -25,11 +62,27 @@ export default class QrCode extends Component {
         this.setState({result: err.message});
     }
 
+    handleLimpar = () => {
+        window.location.reload();
+    }
+
     handleEnviar = () => {
+        if(this.state.result === '' || this.state.result === 'No video input devices found'){
+            alert('Favor realizar a leitura de um QRCode.');
+            return;
+        }
+        if(this.state.categoria === 0 || (this.state.conta === 0 && this.state.cartao === 0)){
+            alert('Favor selecionar uma cateria e uma conta ou cartão.');
+            return;
+        }
         const baseUrl = process.env.REACT_APP_URL_API;
         const endpoint = '/cadastros/qrcode/';
         const data = JSON.stringify({
-            link: this.state.result
+            link: this.state.result,
+            data_lancamento: dayjs(this.state.dataLancamento).format('YYYY-MM-DD'),
+            categoria: this.state.categoria,
+            conta: this.state.conta,
+            cartao: this.state.cartao
         })
         axios.post(baseUrl + endpoint, data,{
             headers: {
@@ -61,10 +114,35 @@ export default class QrCode extends Component {
                         style={{ width: '100%' }}
                     />
                     </div>
-                    <blockquote className="blockquote">
-                        <p className=".text-secondary">{this.state.result}</p>
-                    </blockquote>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Aguardando leitura..." value={this.state.result} />
+                    </div>
+                    <div className="form-group">
+                        <DatePicker
+                            format="dd/MM/yyyy"
+                            showMeridian
+                            ranges={ranges}
+                            style={{ width: 260 }}
+                            onChange={(e) => this.handleData(e)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <SelectCategoria 
+                            onChange={(e) => this.handleCategoria(e)} 
+                            required 
+                        />
+                    </div>
+                    <div className="form-group">
+                        <SelectConta 
+                            onChange={(e) => this.handleConta(e)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <SelectCartao onChange={(e) => this.handleCartao(e)} />
+                    </div>
                     <button type="button" className="btn btn-md btn-primary me-2" onClick={this.handleEnviar}>Enviar</button>
+                    <button type="button" className="btn btn-md btn-danger" onClick={this.handleLimpar}>Limpar</button>
                 </form>
                 </div>
             </div>

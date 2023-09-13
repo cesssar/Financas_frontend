@@ -6,9 +6,9 @@ import dayjs from 'dayjs';
 import SelectCategoria from "./selectcategoria";
 import SelectConta from "./selectconta";
 import SelectCartao from "./selectcartao";
-
 import { DatePicker } from 'rsuite';
 import './datepicker.css';
+
 const ranges = [
     {
       label: 'Now',
