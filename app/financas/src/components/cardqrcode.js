@@ -67,6 +67,11 @@ export default class QrCode extends Component {
     }
 
     handleEnviar = () => {
+        var buttonEnviar = document.getElementById('enviar');
+        var buttonLimpar = document.getElementById('limpar');
+        buttonEnviar.disabled = true;
+        buttonLimpar.disabled = true;
+
         if(this.state.result === '' || this.state.result === 'No video input devices found'){
             alert('Favor realizar a leitura de um QRCode.');
             return;
@@ -144,8 +149,8 @@ export default class QrCode extends Component {
                     <div className="form-group">
                         <SelectCartao onChange={(e) => this.handleCartao(e)} />
                     </div>
-                    <button type="button" className="btn btn-md btn-primary me-2" onClick={this.handleEnviar}>Enviar</button>
-                    <button type="button" className="btn btn-md btn-danger" onClick={this.handleLimpar}>Limpar</button>
+                    <button type="button" id="enviar" className="btn btn-md btn-primary me-2" onClick={this.handleEnviar}>Enviar</button>
+                    <button type="button" id="limpar" className="btn btn-md btn-danger" onClick={this.handleLimpar}>Limpar</button>
                 </form>
                 </div>
             </div>
