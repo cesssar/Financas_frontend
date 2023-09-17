@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
@@ -9,6 +9,17 @@ import Card from "../components/card";
 import RequestGet from "../services/requestget";
 
 export default function Home(){
+    const [saldo, setSaldo] = useState(0);
+    const [fatura, setFatura] = useState(0);
+    const [limitecredito, setLimitecredito] = useState(0); 
+    const [limitealimentacao, setLimitealimentacao] = useState(0);
+
+    async function valores(){
+        setSaldo(<RequestGet endpoint='/saldo/contas' />);
+        setFatura(<RequestGet endpoint='/fatura/cartaocredito' />);
+        setLimitecredito(<RequestGet endpoint = '/limite/cartaocredito?tipo=c' />);
+        setLimitealimentacao(<RequestGet endpoint = '/limite/cartaocredito?tipo=a' />);
+    }
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -22,12 +33,10 @@ export default function Home(){
             }
             // window.location.href = '/login';
         } 
+        valores();
     },[]);
 
-    const saldo = <RequestGet endpoint='/saldo/contas' />;
-    const fatura = <RequestGet endpoint='/fatura/cartaocredito' />;
-    const limitecredito = <RequestGet endpoint = '/limite/cartaocredito?tipo=c' />;
-    const limitealimentacao = <RequestGet endpoint = '/limite/cartaocredito?tipo=a' />;
+    
     
     return(
         <div className="container-scroller">
