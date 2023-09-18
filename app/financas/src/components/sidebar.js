@@ -31,6 +31,11 @@ export default function Sidebar() {
                 icon="ti-shopping-cart menu-icon"
             />
             <MenuSidebar 
+                title="Contas"
+                link="/contas"
+                icon="ti-wallet menu-icon"
+            />
+            <MenuSidebar 
                 title="Sair"
                 link="/login"
                 icon="ti-power-off menu-icon"

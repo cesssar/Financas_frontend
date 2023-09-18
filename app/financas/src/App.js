@@ -8,6 +8,8 @@ import Extrato from './pages/extrato';
 import Detalhes from './pages/detalhes';
 import Categorias from './pages/categorias';
 import QRCode from './pages/qrcode';
+import Contas from './pages/contas';
+import ContaDetalhes from './pages/contadetalhes';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/detalhes" element={<Detalhes />} />
         <Route path="/categorias" element={<Categorias />} />
         <Route path="/qrcode" element={<QRCode />} />
+        <Route path="/contas" element={<Contas />} />
+        <Route path="/contadetalhes" element={<ContaDetalhes />} />
         <Route path="*" element={<Login />} />
       </Routes>
       </BrowserRouter>

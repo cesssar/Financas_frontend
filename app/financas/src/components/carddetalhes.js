@@ -15,7 +15,7 @@ export default function CardDetalhes(){
     };
 
     const handleVoltar = () => {
-        window.history.back();
+        window.location.href = '/extrato';
     }
 
     const handleDeletar = () => {

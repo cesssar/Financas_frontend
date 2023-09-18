@@ -34,6 +34,10 @@ export default function Navbar() {
                     <i className="ti-shopping-cart text-primary" />
                     Categorias
                 </a>
+                <a className="dropdown-item" href="/contas">
+                    <i className="ti-wallet text-primary" />
+                    Contas
+                </a>
                 <a className="dropdown-item" href="/login">
                     <i className="ti-power-off text-primary" />
                     Sair
