@@ -1,6 +1,19 @@
 import React from "react";
 
 export default function Navbar() {
+
+    const handleTema = () => {
+        const tema = localStorage.getItem('tema');
+        var sheet = window.document.styleSheets[0];
+        if(tema !== 'html {filter: invert(80%) hue-rotate(180deg);}'){
+            localStorage.setItem('tema', 'html {filter: invert(80%) hue-rotate(180deg);}');
+            sheet.insertRule('html {filter: invert(80%) hue-rotate(180deg);}', sheet.cssRules.length);
+        }else{
+            localStorage.setItem('tema', 'html {filter: invert(0%) hue-rotate(0deg);}');
+            sheet.insertRule('html {filter: invert(0%) hue-rotate(0deg);}', sheet.cssRules.length);
+        }
+    }
+
     return(
         <nav className="navbar col-lg-12 col-12 p-0 d-flex flex-row fixed-top">
         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -37,6 +50,10 @@ export default function Navbar() {
                 <a className="dropdown-item" href="/contas">
                     <i className="ti-wallet text-primary" />
                     Contas
+                </a>
+                <a className="dropdown-item" href="#" onClick={handleTema}>
+                    <i className="ti-paint-bucket text-primary" />
+                    Alterar tema
                 </a>
                 <a className="dropdown-item" href="/login">
                     <i className="ti-power-off text-primary" />

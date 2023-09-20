@@ -4,6 +4,7 @@ import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import Card from "../components/card";
+import Theme from "../theme";
 
 // services
 import RequestGet from "../services/requestget";
@@ -13,6 +14,8 @@ export default function Home(){
     const [fatura, setFatura] = useState(0);
     const [limitecredito, setLimitecredito] = useState(0); 
     const [limitealimentacao, setLimitealimentacao] = useState(0);
+
+    Theme();
 
     async function valores(){
         setSaldo(<RequestGet endpoint='/saldo/contas' />);

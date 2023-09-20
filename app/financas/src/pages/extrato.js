@@ -4,8 +4,11 @@ import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import CardExtrato from "../components/cardextrato";
+import Theme from "../theme";
 
 export default function Extrato(){
+
+    Theme();
 
     useEffect(() => {
         const token = localStorage.getItem('token');

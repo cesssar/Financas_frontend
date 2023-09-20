@@ -5,6 +5,7 @@ import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import CardCategorias from "../components/cardcategorias";
 import CardAddCategoria from "../components/cardaddcategoria";
+import Theme from "../theme";
 
 export default function Categorias(){
 
@@ -21,6 +22,8 @@ export default function Categorias(){
             window.location.href = '/login';
         } 
     },[]);
+
+    Theme();
 
     return(
         <div className="container-scroller">

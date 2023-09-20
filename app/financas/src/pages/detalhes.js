@@ -4,8 +4,11 @@ import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import CardDetalhes from "../components/carddetalhes";
+import Theme from "../theme";
 
 export default function Detalhes(){
+
+    Theme();
 
     useEffect(() => {
         const token = localStorage.getItem('token');

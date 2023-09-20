@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+import Theme from "../theme";
+
 const expires = () => {
     const currentDate = new Date();
     currentDate.setMinutes(currentDate.getMinutes() + 10);
@@ -41,11 +43,16 @@ export default function Login() {
         }
     };
 
+    Theme();
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setUsername('cesssar');
             setPassword('ozzy');
-            localStorage.clear();
+            localStorage.removeItem('username');
+            localStorage.removeItem('token');
+            localStorage.removeItem('expries');
+            localStorage.removeItem('messageLogin');
         }, 3000);
         return () => clearTimeout(timer);
     },[]);

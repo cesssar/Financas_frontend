@@ -5,8 +5,11 @@ import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import CardContas from "../components/cardcontas";
 import CardAddConta from '../components/cardaddconta';
+import Theme from "../theme";
 
 export default function Contas(){
+
+    Theme();
 
     useEffect(() => {
         const token = localStorage.getItem('token');

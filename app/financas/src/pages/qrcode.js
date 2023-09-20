@@ -3,8 +3,11 @@ import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import CardQRCode from "../components/cardqrcode";
+import Theme from "../theme";
 
 export default function QRCode(){
+
+    Theme();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
