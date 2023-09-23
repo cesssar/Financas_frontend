@@ -2,7 +2,7 @@ FROM node:alpine AS development
 
 ENV NODE_ENV development
 
-ENV REACT_APP_URL_API http://44.195.129.139:5000
+ENV REACT_APP_URL_API https://steinmeier.space/backend
 
 WORKDIR /app
 

@@ -23,7 +23,7 @@ export default function Lancamentos(){
             }else if(expires < now){
                 localStorage.setItem('messageLogin', 'Sua sessão expirou');
             }
-            window.location.href = '/login';
+            window.location.href = '/';
         } 
     },[]);
 

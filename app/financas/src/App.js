@@ -18,8 +18,8 @@ function App() {
         <script src="js/dashboard.js" type="text/javascript"></script>
       </Helmet>
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="/lancamentos" element={<Lancamentos />} />
         <Route path="/extrato" element={<Extrato />} />
         <Route path="/detalhes" element={<Detalhes />} />

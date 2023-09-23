@@ -13,17 +13,17 @@ export default function Router(){
 
     const routes = useRoutes([
         {
-            path: '/',
+            path: '/home',
             element: <Home />,
             children: [
-                { element: <Navigate to="/" />},
+                { element: <Navigate to="/home" />},
             ]
         },
         {
-            path: '/login',
+            path: '/',
             element: <Login />,
             children: [
-                { element: <Navigate to="/login" />, index: true},
+                { element: <Navigate to="/" />, index: true},
             ]
         },
         {

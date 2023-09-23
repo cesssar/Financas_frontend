@@ -6,7 +6,7 @@ export default function CardCategorias(){
     const [isLoading, setIsLoading] = useState(true);
 
     const baseUrl = process.env.REACT_APP_URL_API;
-    const endpoint = '/cadastros/categoria/';
+    const endpoint = '/cadastros/categoria';
     const config = {
         headers: {Authorization: `Bearer ${localStorage.getItem("token")}`, 'accept': 'application/json'}
     };

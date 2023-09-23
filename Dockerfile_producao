@@ -1,6 +1,6 @@
 FROM node:alpine AS builder
 ENV NODE_ENV production
-ENV REACT_APP_URL_API https://44.195.129.139:5000
+ENV REACT_APP_URL_API https://steinmeier.space/backend
 WORKDIR /app
 COPY /app/financas/package.json .
 RUN npm install --production --omit=dev --force
@@ -9,7 +9,7 @@ RUN npm run build
 
 FROM nginx:stable-alpine3.17 as producao
 ENV NODE_ENV production
-ENV REACT_APP_URL_API https://44.195.129.139:5000
+ENV REACT_APP_URL_API https://steinmeier.space/backend
 COPY --from=builder /app/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./cert/localhost.crt /etc/nginx/cert/localhost.crt

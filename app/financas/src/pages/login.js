@@ -35,11 +35,11 @@ export default function Login() {
             });
             localStorage.setItem('token', response.data.access_token);
             localStorage.setItem('expires', currentDate);
-            navigate('/', { replace: true });
+            navigate('/home', { replace: true });
         }
         catch(error){
             localStorage.setItem('messageLogin', 'Credenciais inválidas');
-            navigate('/login', { replace: true });
+            navigate('/', { replace: true });
         }
     };
 

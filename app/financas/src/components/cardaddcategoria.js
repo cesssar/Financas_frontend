@@ -6,7 +6,7 @@ export default function CardAddCategoria(){
 
     const handleCadastrar = () => {
         const baseUrl = process.env.REACT_APP_URL_API;
-        const endpoint = '/cadastros/categoria/';
+        const endpoint = '/backend/cadastros/categoria/';
         const data = JSON.stringify({
             categoria: novacategoria
         });

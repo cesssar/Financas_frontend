@@ -6,7 +6,7 @@ export default function CardContas(){
     const [isLoading, setIsLoading] = useState(true);
 
     const baseUrl = process.env.REACT_APP_URL_API;
-    const endpoint = '/cadastros/conta/';
+    const endpoint = '/cadastros/conta';
     const config = {
         headers: {Authorization: `Bearer ${localStorage.getItem("token")}`, 'accept': 'application/json'}
     };

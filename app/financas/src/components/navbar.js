@@ -27,7 +27,7 @@ export default function Navbar() {
                 <img src="images/porquinho.png" alt="profile" />
                 </a>
                 <div className="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a className="dropdown-item" href="/">
+                <a className="dropdown-item" href="/home">
                     <i className="ti-home text-primary" />
                     Home
                 </a>
@@ -55,7 +55,7 @@ export default function Navbar() {
                     <i className="ti-paint-bucket text-primary" />
                     Alterar tema
                 </a>
-                <a className="dropdown-item" href="/login">
+                <a className="dropdown-item" href="/">
                     <i className="ti-power-off text-primary" />
                     Sair
                 </a>

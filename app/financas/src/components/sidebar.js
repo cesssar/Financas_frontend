@@ -7,7 +7,7 @@ export default function Sidebar() {
         <ul className="nav">
             <MenuSidebar 
                 title="Home"
-                link="/"
+                link="/home"
                 icon="ti-home menu-icon"
             />
             <MenuSidebar 
@@ -37,7 +37,7 @@ export default function Sidebar() {
             />
             <MenuSidebar 
                 title="Sair"
-                link="/login"
+                link="/"
                 icon="ti-power-off menu-icon"
             />
         </ul>
