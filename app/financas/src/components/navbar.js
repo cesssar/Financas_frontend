@@ -51,6 +51,10 @@ export default function Navbar() {
                     <i className="ti-wallet text-primary" />
                     Contas
                 </a>
+                <a className="dropdown-item" href="/cartoes">
+                    <i className="ti-credit-card text-primary" />
+                    Cartões
+                </a>
                 <a className="dropdown-item" href="#" onClick={handleTema}>
                     <i className="ti-paint-bucket text-primary" />
                     Alterar tema

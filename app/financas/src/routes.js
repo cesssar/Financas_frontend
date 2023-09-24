@@ -8,6 +8,8 @@ import Categorias from "./pages/categorias";
 import QRCode from "./pages/qrcode";
 import Contas from "./pages/contas";
 import ContaDetalhes from "./pages/contadetalhes";
+import Cartoes from "./pages/cartoes";
+import CartaoDetalhes from "./pages/cartaodetalhes";
 
 export default function Router(){
 
@@ -73,6 +75,20 @@ export default function Router(){
             element: <ContaDetalhes />,
             children: [
                 { element: <Navigate to="/contadetalhes" /> },
+            ]
+        },
+        {
+            path: '/cartoes',
+            element: <Cartoes />,
+            children: [
+                { element: <Navigate to="/cartoes" /> },
+            ]
+        },
+        {
+            path: '/cartaodetalhes',
+            element: <CartaoDetalhes />,
+            children: [
+                { element: <Navigate to="/cartaodetalhes" /> },
             ]
         },
     ]);

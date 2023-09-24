@@ -2,25 +2,15 @@ import React, { useEffect } from 'react';
 import Navbar from "../components/navbar";
 import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
-import CardQRCode from "../components/cardqrcode";
+import CardQRCode from "./lancamentos/cardqrcode";
 import Theme from "../theme";
+import ValidaLogin from "./validalogin";
 
 export default function QRCode(){
 
-    Theme();
-
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        const expires = localStorage.getItem('expires');
-        const now = Date();
-        if(!token || expires < now || !expires){
-            if (!token || !expires) {
-                localStorage.setItem('messageLogin', 'Faça o login para continuar');
-            }else if(expires < now){
-                localStorage.setItem('messageLogin', 'Sua sessão expirou');
-            }
-            window.location.href = '/';
-        } 
+        Theme();
+        ValidaLogin();        
     },[]);
     
     return(

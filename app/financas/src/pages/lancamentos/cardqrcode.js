@@ -3,9 +3,9 @@ import QrReader from 'modern-react-qr-reader'
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-import SelectCategoria from "./selectcategoria";
-import SelectConta from "./selectconta";
-import SelectCartao from "./selectcartao";
+import SelectCategoria from "../../components/selectcategoria";
+import SelectConta from "../../components/selectconta";
+import SelectCartao from "../../components/selectcartao";
 import { DatePicker } from 'rsuite';
 import './datepicker.css';
 

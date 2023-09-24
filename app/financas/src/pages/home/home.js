@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-import Navbar from "../components/navbar";
-import Sidebar from "../components/sidebar";
-import Footer from "../components/footer";
-import Card from "../components/card";
-import Theme from "../theme";
+import Navbar from "../../components/navbar";
+import Sidebar from "../../components/sidebar";
+import Footer from "../../components/footer";
+import Card from "../../components/card";
+import Theme from "../../theme";
+import ValidaLogin from "../validalogin";
+import CardGrafico from "./cardgrafico";
 
 // services
-import RequestGet from "../services/requestget";
+import RequestGet from "../../services/requestget";
 
 export default function Home(){
     const [saldo, setSaldo] = useState(0);
@@ -15,31 +17,15 @@ export default function Home(){
     const [limitecredito, setLimitecredito] = useState(0); 
     const [limitealimentacao, setLimitealimentacao] = useState(0);
 
-    Theme();
-
-    async function valores(){
+    useEffect(() => {
+        Theme();
+        ValidaLogin();
         setSaldo(<RequestGet endpoint='/saldo/contas' />);
         setFatura(<RequestGet endpoint='/fatura/cartaocredito' />);
-        setLimitecredito(<RequestGet endpoint = '/limite/cartaocredito?tipo=c' />);
-        setLimitealimentacao(<RequestGet endpoint = '/limite/cartaocredito?tipo=a' />);
-    }
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        const expires = localStorage.getItem('expires');
-        const now = Date();
-        if(!token || expires < now || !expires){
-            if (!token || !expires) {
-                localStorage.setItem('messageLogin', 'Faça o login para continuar');
-            }else if(expires < now){
-                localStorage.setItem('messageLogin', 'Sua sessão expirou');
-            }
-            window.location.href = '/';
-        } 
-        valores();
+        setLimitecredito(<RequestGet endpoint = '/limite/cartaocredito?tipo=1' />);
+        setLimitealimentacao(<RequestGet endpoint = '/limite/cartaocredito?tipo=2' />);
     },[]);
 
-    
     
     return(
         <div className="container-scroller">
@@ -70,6 +56,7 @@ export default function Home(){
                                 content={limitealimentacao}
                                 icon="ti-id-badge icon-md text-muted mb-0 mb-md-3 mb-xl-0"
                             />
+                            <CardGrafico />
                         </div>
                         
                         <Footer />

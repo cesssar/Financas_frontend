@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import CurrencyInput from 'react-currency-masked-input'
 import axios from 'axios';
 
-export default function CardAddConta(){
-    const [novaconta, setNovaConta] = useState([]);
-    const [saldo, setSaldo] = useState(0);
+export default function CardAddCategoria(){
+    const [novacategoria, setNovacategoria] = useState([]);
 
     const handleCadastrar = () => {
         const baseUrl = process.env.REACT_APP_URL_API;
-        const endpoint = '/cadastros/conta/';
+        const endpoint = '/cadastros/categoria';
         const data = JSON.stringify({
-            banco: novaconta,
-            saldo: saldo
+            categoria: novacategoria
         });
 
         axios.post(baseUrl + endpoint, data,{
@@ -21,8 +18,8 @@ export default function CardAddConta(){
             }
         })
         .then(response => {
-            alert('Conta cadastrada');
-            window.location.href = '/contas';
+            alert('Categoria cadastrada');
+            window.location.href = '/categorias';
         })
         .catch(function (error) {
             alert('Ocorreu um erro ao tentar cadastrar.');
@@ -34,13 +31,10 @@ export default function CardAddConta(){
         <div className="col-12 grid-margin stretch-card">
         <div className="card">
             <div className="card-body">
-            <h4 className="card-title">Adicionar nova conta</h4>
+            <h4 className="card-title">Adicionar nova categoria</h4>
             <form className="forms-sample">
                 <div className="form-group">
-                    <input type="text" className="form-control" id="categoria" placeholder="nova conta" onChange={e => setNovaConta(e.target.value)} />
-                </div>
-                <div className="form-group">
-                    <CurrencyInput placeholder="saldo" aria-label="saldo" id="saldo" name="saldo" className="form-control form-control-sm" onChange={(e) => setSaldo(e.target.value)} required />
+                <input type="text" className="form-control" id="categoria" placeholder="Categoria" onChange={e => setNovacategoria(e.target.value)} />
                 </div>
                 <button type="button" className="btn btn-md btn-primary me-2" onClick={handleCadastrar}>Cadastrar</button>
             </form>

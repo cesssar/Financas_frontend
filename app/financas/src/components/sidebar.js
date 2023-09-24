@@ -36,6 +36,11 @@ export default function Sidebar() {
                 icon="ti-wallet menu-icon"
             />
             <MenuSidebar 
+                title="Cartões"
+                link="/cartoes"
+                icon="ti-credit-card menu-icon"
+            />
+            <MenuSidebar 
                 title="Sair"
                 link="/"
                 icon="ti-power-off menu-icon"
