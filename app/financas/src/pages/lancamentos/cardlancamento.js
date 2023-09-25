@@ -65,7 +65,7 @@ export default function CardLancamento(){
                     format="dd/MM/yyyy"
                     showMeridian
                     ranges={ranges}
-                    style={{ width: 260 }}
+                    style={{ width: '100%' }}
                     onChange={(e) => setdataLancamento(e)}
                 />
             </div>

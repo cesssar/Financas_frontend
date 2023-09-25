@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import  secureLocalStorage  from  "react-secure-storage";
 
 import Theme from "../theme";
 
@@ -14,9 +15,20 @@ const expires = () => {
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [marcado, setMarcado] = useState(false);
 
     const navigate = useNavigate();
     const message = localStorage.getItem('messageLogin');
+
+    const handleLembrarme = async(e) => {
+        if(e === true){
+            secureLocalStorage.setItem('lembrar', 'true');
+            setMarcado(true);
+        }else{
+            secureLocalStorage.removeItem('lembrar');
+            setMarcado(false);
+        }
+    };
 
     const handleClick = async() => {
         const baseUrl = process.env.REACT_APP_URL_API;
@@ -27,6 +39,21 @@ export default function Login() {
             senha: password,
         });
         localStorage.setItem('username', username);
+        
+        // armazena dados de login se lembrar estiver marcado
+        if(marcado === true){
+            secureLocalStorage.setItem('username', username);
+            secureLocalStorage.setItem('password', password);
+        }else{
+            // apaga dados se houver
+            try{
+                secureLocalStorage.removeItem('username');
+                secureLocalStorage.removeItem('password');
+            }catch(err){
+                console.log(err);
+            }
+        }
+
         try{
             const response = await axios.post(baseUrl + endpoint, credentials,{
                 headers: {
@@ -43,17 +70,29 @@ export default function Login() {
         }
     };
 
-    Theme();
+    const carregaLembrar = async() => {
+        try{
+            if(secureLocalStorage.getItem('lembrar') === 'true'){
+                setUsername(secureLocalStorage.getItem('username'));
+                setPassword(secureLocalStorage.getItem('password'));
+                setMarcado(true);
+                var dom = document.getElementById('lembrarme');
+                dom.checked = true;
+            }
+        }catch(err){
+            console.log(err);
+        }
+    }
 
     useEffect(() => {
+        Theme();
+        carregaLembrar();
         const timer = setTimeout(() => {
-            setUsername('cesssar');
-            setPassword('ozzy');
             localStorage.removeItem('username');
             localStorage.removeItem('token');
             localStorage.removeItem('expries');
             localStorage.removeItem('messageLogin');
-        }, 3000);
+        }, 500);
         return () => clearTimeout(timer);
     },[]);
 
@@ -78,6 +117,7 @@ export default function Login() {
                             id="username"
                             placeholder="usuario" 
                             onChange={e => setUsername(e.target.value)}
+                            value={username}
                         />
                     </div>
                     <div className="form-group">
@@ -87,10 +127,17 @@ export default function Login() {
                             id="password" 
                             placeholder="senha"
                             onChange={e => setPassword(e.target.value)}
+                            value={password}
                         />
                     </div>
+                    <div className="form-check">
+                        <label className="form-check-label text-muted">
+                        <input type="checkbox" className="form-check-input" id="lembrarme" onChange={e => handleLembrarme(e.target.checked)} defaultChecked={marcado}/>
+                            Lembrar-me
+                        <i className="input-helper" /></label>
+                    </div>
                     <div className="mt-3">
-                    <button type="button" className="btn btn-primary me-2" onClick={handleClick}>Entrar</button>
+                        <button type="button" className="btn btn-primary me-2" onClick={handleClick}>Entrar</button>
                     </div>
                     
                     </form>

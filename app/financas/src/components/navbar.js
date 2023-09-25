@@ -17,8 +17,8 @@ export default function Navbar() {
     return(
         <nav className="navbar col-lg-12 col-12 p-0 d-flex flex-row fixed-top">
         <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a className="navbar-brand brand-logo me-5" href="/"><h2>Finanças</h2></a>
-            <a className="navbar-brand brand-logo-mini" href="/"><h3>$</h3></a>
+            <a className="navbar-brand brand-logo me-5" href="/home"><h2>Finanças</h2></a>
+            <a className="navbar-brand brand-logo-mini" href="/home"><h3>$</h3></a>
         </div>
         <div className="navbar-menu-wrapper d-flex align-items-center justify-content-end">
             <ul className="navbar-nav navbar-nav-right">

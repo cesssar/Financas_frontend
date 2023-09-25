@@ -1,0 +1,1 @@
+docker run --rm --volume "/Users/cesarsteinmeier/Documents/React/Financas_frontend/app:/app" --workdir "/app" --env REACT_APP_URL_API=https://steinmeier.space/backend --publish 666:3000 -it node:alpine sh

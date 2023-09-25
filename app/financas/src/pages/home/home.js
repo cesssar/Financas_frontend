@@ -7,6 +7,7 @@ import Card from "../../components/card";
 import Theme from "../../theme";
 import ValidaLogin from "../validalogin";
 import CardGrafico from "./cardgrafico";
+import CardGraficoPie from "./cardgraficopie";
 
 // services
 import RequestGet from "../../services/requestget";
@@ -57,6 +58,7 @@ export default function Home(){
                                 icon="ti-id-badge icon-md text-muted mb-0 mb-md-3 mb-xl-0"
                             />
                             <CardGrafico />
+                            <CardGraficoPie />
                         </div>
                         
                         <Footer />

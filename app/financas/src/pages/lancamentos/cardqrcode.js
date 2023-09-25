@@ -130,7 +130,7 @@ export default class QrCode extends Component {
                             format="dd/MM/yyyy"
                             showMeridian
                             ranges={ranges}
-                            style={{ width: 260 }}
+                            style={{ width: '100%' }}
                             onChange={(e) => this.handleData(e)}
                             required
                         />
