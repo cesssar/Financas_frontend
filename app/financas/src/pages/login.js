@@ -57,7 +57,10 @@ export default function Login() {
         try{
             const response = await axios.post(baseUrl + endpoint, credentials,{
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                    'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type,Accept,Origin',
                 }
             });
             localStorage.setItem('token', response.data.access_token);

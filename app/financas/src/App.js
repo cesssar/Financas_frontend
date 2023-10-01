@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
       <Helmet>
         <script src="js/dashboard.js" type="text/javascript"></script>
-        <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js" type="text/javascript"></script>
       </Helmet>
       <Routes>
         <Route path="/home" element={<Home />} />

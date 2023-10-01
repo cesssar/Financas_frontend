@@ -1,76 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import * as echarts from 'echarts';
 import dayjs from 'dayjs';
+import { Chart } from "react-google-charts";
 
 export default function CardGrafico() {
+    const [data, setData] = useState([]);
     const baseUrl = process.env.REACT_APP_URL_API;
     const endpoint = '/lancamento/ultimos';
     const config = {
         headers: {Authorization: `Bearer ${localStorage.getItem("token")}`, 'accept': 'application/json'}
     };
 
-    let array_datas = [];
-    let array_valores = [];
-
-    const montaGrafico = (dados) => {
-        dados.map((item) => 
-            array_datas.push(dayjs(item.data).format('DD-MM-YYYY'))
-        );
-        dados.map((item) => array_valores.push(item.valor));
-        grafico(array_datas, array_valores);
+    const options = {
+        legend: 'none'
     };
 
-    const grafico = (datas, valores) => {
-        var dom = document.getElementById('chart-container');
-        var myChart = echarts.init(dom, null, {
-            renderer: 'canvas',
-            useDirtyRect: false
-        });
-
-        var option;
-
-        option = {
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                  type: 'shadow'
-                },
-                formatter: function (params) {
-                  var tar = params[0];
-                  return tar.name + '<br/>' + tar.value.toFixed(2);
-                }
-              },
-        xAxis: {
-            type: 'category',
-            data: datas
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [
-            {
-                data: valores,
-                type: 'bar',
-                showBackground: true,
-                backgroundStyle: {
-                    color: 'rgba(180, 180, 180, 0.2)'
-                }
-            }
-        ]
-        };
-
-        if (option && typeof option === 'object') {
-            myChart.setOption(option);
-        }
-
-        window.addEventListener('resize', myChart.resize);
+    const montaDados = (dados) => {
+        let array_dados = [["Data", "Valor"],];
+        dados.map((item) => 
+        array_dados.push([dayjs(item.data).format('DD-MM-YYYY'), item.valor],)
+        );
+        setData(array_dados);
     };
 
     useEffect(() => {
         axios.get(baseUrl + endpoint, config)
           .then(response => {
-            montaGrafico(response.data);
+            montaDados(response.data.sort().reverse());
           })
           .catch(error => {
             console.error('Error fetching data:', error);
@@ -84,7 +40,13 @@ export default function CardGrafico() {
                     <h4 className="card-title">Gastos últimos dias</h4>
                     <div className="row">
                         <div className="card">
-                            <div id="chart-container" />    
+                        <Chart
+                            chartType="ColumnChart"
+                            data={data}
+                            width={"100%"}
+                            height={"300px"}
+                            options={options}
+                            />   
                         </div>
                     </div>
                     

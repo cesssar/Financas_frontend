@@ -7,10 +7,6 @@
     height: 40vh;
     overflow: hidden;
   }
-  * {
-    margin: 0;
-    padding: 0;
-  }
   #chart-container-pie {
     position: relative;
     height: 40vh;
