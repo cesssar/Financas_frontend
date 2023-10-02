@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactPaginate from 'react-paginate';
+import './paginacao.css';
 
 export default function CardExtrato() {
     const [data, setData] = useState([]);
@@ -103,23 +104,26 @@ export default function CardExtrato() {
                                 </>
                             )}
                             <>
-                                    <tr>
-                                        <td style={{"letter-spacing":".5rem"}} colSpan={3}>
-                                        <ReactPaginate
-                                            previousLabel={"<"}
-                                            nextLabel={">"}
-                                            pageCount={totalPages}
-                                            onPageChange={handlePageChange}
-                                            containerClassName={"pagination"}
-                                            previousLinkClassName={"pagination__link"}
-                                            nextLinkClassName={"pagination__link"}
-                                            disabledClassName={"pagination__link--disabled"}
-                                            activeClassName={"pagination__link--active"}
-                                            forcePage={currentPage}
-                                        />
-                                        </td>
-                                    </tr>
-                            </>
+                                <tr>
+                                    <td style={{"letter-spacing":".5rem"}} colSpan={3}>
+                                    <ReactPaginate
+                                        previousLabel={<i className='ti-arrow-circle-left'></i>}
+                                        nextLabel={<i className='ti-arrow-circle-right'></i>}
+                                        pageCount={totalPages}
+                                        onPageChange={handlePageChange}
+                                        containerClassName={"pagination"}
+                                        previousLinkClassName={"pagination__link"}
+                                        nextClassName={"item next "}
+                                        disabledClassName={'disabled-page'}
+                                        activeClassName={'item active '}
+                                        forcePage={currentPage}
+                                        marginPagesDisplayed={1}
+                                        breakClassName={'item break-me '}
+                                        breakLabel={'...'}                                            
+                                    />
+                                    </td>
+                                </tr>
+                        </>
                         </tbody>
                         </table>
                         

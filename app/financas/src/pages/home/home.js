@@ -8,6 +8,7 @@ import Theme from "../../theme";
 import ValidaLogin from "../validalogin";
 import CardGrafico from "./cardgrafico";
 import CardGraficoPie from "./cardgraficopie";
+import CardBotoes from "../../components/cardbotoes";
 
 // services
 import RequestGet from "../../services/requestget";
@@ -35,6 +36,14 @@ export default function Home(){
                 <Sidebar />
                 <div className="main-panel">
                     <div className="content-wrapper">
+
+                        <div className="row">
+                            <CardBotoes />
+                        </div>
+                        <div className="row">
+                            &nbsp;
+                        </div>
+
 
                         <div className="row">
                             <Card 
